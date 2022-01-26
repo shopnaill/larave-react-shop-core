@@ -1,0 +1,42 @@
+
+.chat-list .chat-user-offline:before {
+	content: '';
+	position: absolute;
+	bottom: 7px;
+	left: 36px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px #fff;
+	background: #484b49
+}
+
+.chat-user-offline {
+	position: relative
+}
+.loader {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.loader img 
+{
+	width: 50px;
+	height: 50px;
+}
+.clas
+{
+	position: absolute;
+	left: 4px;
+	font-size: 19px;
+}
+#user_meals .card {
+    margin-top: 24px;
+}
+
+.list-group li 
+{
+	cursor: pointer;
+}
