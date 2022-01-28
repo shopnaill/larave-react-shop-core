@@ -15,6 +15,8 @@ import SubCategoryList from "../views/admin/SubCategories/SubCategoryList";
 import ProductsList from "../views/admin/Products/ProductsList";
 import Cookies from 'universal-cookie';
 import Checkout from "../views/Checkout";
+import OrderList from "../views/admin/Orders/OrderList";
+import Order from "../views/admin/Orders/Order";
 const cookies = new Cookies();
 
 class RouterList extends React.Component {
@@ -46,6 +48,7 @@ class RouterList extends React.Component {
                     <Route path="/dashboard/categories"element={<CategoryList />}/>
                     <Route path="/dashboard/sub_categories" element={<SubCategoryList />} />
                     <Route path="/dashboard/products" element={<ProductsList />} />
+                    <Route path="/dashboard/orders" element={<OrderList />} />
 
                     <Route path="/dashboard/category/:id" element={<Category />} />
                     <Route path="/dashboard/category/create" element={<Category />} />
@@ -55,6 +58,8 @@ class RouterList extends React.Component {
 
                     <Route path="/dashboard/product/:id" element={<Product />} />
                     <Route path="/dashboard/product/create" element={<Product />} />
+
+                    <Route path="/dashboard/order/:id" element={<Order />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/checkout" element={<Checkout/>} />
                     

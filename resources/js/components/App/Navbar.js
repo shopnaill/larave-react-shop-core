@@ -29,7 +29,7 @@ class Navbar extends React.Component {
         return (
             <div className="topbar d-flex align-items-center mb-5">
                 <nav className="navbar navbar-expand">
-                    <a className="navbar-brand" href="#">
+                    <Link to="/home" className="navbar-brand">
                         <img
                             width="105px"
                             className="img-fluid"
@@ -37,7 +37,7 @@ class Navbar extends React.Component {
                             alt=""
                             srcSet=""
                         />
-                    </a>
+                    </Link>
 
                     <div className="top-menu ms-auto">
                         <ul className="navbar-nav align-items-center">

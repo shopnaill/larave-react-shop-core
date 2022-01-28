@@ -24,6 +24,12 @@ Route::get('admin/dashboard', [ApiController::class , 'dashboard'])->middleware(
 
 Route::get('products',  [ApiController::class , 'get_products'])->middleware('auth.apikey');
 Route::get('categories', [ApiController::class, 'categories'])->middleware('auth.apikey');
+// orders
+Route::get('orders', [ApiController::class, 'orders'])->middleware('auth.apikey');
+Route::get('order/{id}', [ApiController::class, 'order'])->middleware('auth.apikey');
+Route::post('order/approve/{id}', [ApiController::class, 'approve_order'])->middleware('auth.apikey');
+Route::post('order/deliver/{id}', [ApiController::class, 'deliver_order'])->middleware('auth.apikey');
+
 Route::get('categories/{category}', [ApiController::class, 'category'])->middleware('auth.apikey');
 Route::get('sub_categories/{category}', [ApiController::class, 'sub_category'])->middleware('auth.apikey');
 Route::post('category/update_create', [ApiController::class, 'category_update_create'])->middleware('auth.apikey');

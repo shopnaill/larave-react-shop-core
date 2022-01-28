@@ -41,6 +41,13 @@ class ApiController extends Controller
         return response()->json($products);
     }
 
+    // orders 
+    public function orders()
+    {
+        $orders = Order::with('user', 'order_items')->get();
+        return response()->json($orders);
+    }
+
     public function categories()
     {
         $cats = Category::get();
@@ -55,6 +62,32 @@ class ApiController extends Controller
     public function sub_category(SubCategory $category)
     {
         return response()->json($category);
+    }
+
+    public function order($id)
+    {
+        $order = Order::with('user')->find($id);
+        $order_items = OrderItem::where('order_id', $id)->with('product')->get();
+        return response()->json([
+            'orders' => $order,
+            'order_items' => $order_items,
+        ]);
+    }
+
+    public function approve_order($id)
+    {
+        $order = Order::find($id);
+        $order->status = 'approved';
+        $order->save();
+        return response()->json($order);
+    }
+
+    public function deliver_order($id)
+    {
+        $order = Order::find($id);
+        $order->status = 'delivered';
+        $order->save();
+        return response()->json($order);
     }
 
     public function sub_categories()
