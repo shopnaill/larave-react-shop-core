@@ -1,3 +1,6 @@
+@php
+$react = false;
+@endphp
 @extends('layouts.app')
 
 @section('content')

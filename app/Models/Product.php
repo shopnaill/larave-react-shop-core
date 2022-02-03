@@ -20,7 +20,7 @@ class Product extends Model
 
     public function related_products()
     {
-        return $this->belongsToMany(Product::class, 'sub_categories', 'id', 'category_id');
+        return Product::where('category_id', $this->category_id)->get();
     }
 
     public function images()

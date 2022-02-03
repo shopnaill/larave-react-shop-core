@@ -10,6 +10,7 @@ class Manage extends React.Component {
             sub_categories: 0,
             orders: 0,
             users: 0,
+            sliders: 0,
             cart: 0,
             loading: true,
             error: null,
@@ -38,6 +39,7 @@ class Manage extends React.Component {
                     sub_categories: data.sub_categories,
                     orders: data.orders,
                     users: data.users,
+                    sliders: data.sliders,
                     cart: data.cart,
                     loading: false,
                 });
@@ -57,6 +59,7 @@ class Manage extends React.Component {
             let sub_categories = this.state.sub_categories;
             let orders = this.state.orders;
             let users = this.state.users;
+            let sliders = this.state.sliders;
 
             return (
                 <div className="container">
@@ -97,6 +100,33 @@ class Manage extends React.Component {
                             link="/dashboard/orders"
                             counter={orders}
                             color="#f44336"
+                        />
+
+                        <Card
+                            title="Customers"
+                            description="Total Customers"
+                            icon="fas fa-users"
+                            link="/dashboard/users"
+                            counter={users}
+                            color="#ff9800"
+                        />
+
+                        <Card
+                            title="Sliders"
+                            description="Manage Slider"
+                            icon="fas fa-film"
+                            link="/dashboard/sliders"
+                            counter={sliders}
+                            color="#009688"
+                        />
+
+                        <Card
+                            title="Settings"
+                            description="Settings & Configration"
+                            icon="fas fa-cog"
+                            link="/dashboard/settings"
+                            counter={orders}
+                            color="#4caf50"
                         />
                     </div>
                 </div>

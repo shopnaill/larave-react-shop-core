@@ -17,6 +17,12 @@ import Cookies from 'universal-cookie';
 import Checkout from "../views/Checkout";
 import OrderList from "../views/admin/Orders/OrderList";
 import Order from "../views/admin/Orders/Order";
+import UserList from "../views/admin/Customers/UserList";
+import SliderList from "../views/admin/Sliders/SliderList";
+import Slider from "../views/admin/Sliders/Slider";
+import SettingTable from "../views/admin/Settings/SettingTable";
+import ProductCategory from "../views/Categories/Category";
+
 const cookies = new Cookies();
 
 class RouterList extends React.Component {
@@ -49,6 +55,9 @@ class RouterList extends React.Component {
                     <Route path="/dashboard/sub_categories" element={<SubCategoryList />} />
                     <Route path="/dashboard/products" element={<ProductsList />} />
                     <Route path="/dashboard/orders" element={<OrderList />} />
+                    <Route path="/dashboard/users" element={<UserList />} />
+                    <Route path="/dashboard/sliders" element={<SliderList />} />
+                    <Route path="/dashboard/settings" element={<SettingTable />} />
 
                     <Route path="/dashboard/category/:id" element={<Category />} />
                     <Route path="/dashboard/category/create" element={<Category />} />
@@ -59,9 +68,14 @@ class RouterList extends React.Component {
                     <Route path="/dashboard/product/:id" element={<Product />} />
                     <Route path="/dashboard/product/create" element={<Product />} />
 
+                    <Route path="/dashboard/slider/:id" element={<Slider />} />
+                    <Route path="/dashboard/slider/create" element={<Slider />} />
+
+
                     <Route path="/dashboard/order/:id" element={<Order />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/checkout" element={<Checkout/>} />
+                    <Route path="/category/:id" element={<ProductCategory />} />
                     
 
                     <Route path="/product/:id" element={<ProductPage updateCartCounter={this.updateCartCounter} />} />

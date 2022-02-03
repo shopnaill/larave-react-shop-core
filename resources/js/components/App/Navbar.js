@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { Link } from "react-router-dom";
 import { createGlobalState } from "react-hooks-global-state";
 
@@ -15,6 +15,7 @@ class Navbar extends React.Component {
 
     componentDidMount = () => {
         this.getCartCount();
+        this.getCategories();
     };
     getCartCount = () => {
         let cartCount = 0;
@@ -22,6 +23,29 @@ class Navbar extends React.Component {
             cartCount = JSON.parse(localStorage.getItem("cart")).length;
         }
         this.setState({ cartCount: cartCount });
+    };
+
+    logout = () => {
+        axios.post("/logout").then(() => (location.href = "/home"));
+    };
+
+    getCategories = () => {
+        fetch("/api/categories", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-Authorization":
+                    "qSguaRblSGsCAYI69eOhzXSXWF6UJYHy199dgqSnBYmt3WK12cMHoFBPA4KVJFL8",
+            },
+        })
+            .then((res) => res.json())
+            .then((categories) => this.setState({ categories, loading: false }))
+            .catch((error) => {
+                this.setState({
+                    error,
+                });
+            });
     };
 
     render() {
@@ -41,15 +65,72 @@ class Navbar extends React.Component {
 
                     <div className="top-menu ms-auto">
                         <ul className="navbar-nav align-items-center">
-                            <li className="nav-item open-demo">
-                                <Link to="/home">
-                                    <div className="nav-link">Home</div>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/dashboard">
-                                    <div className="nav-link">Dashboard</div>
-                                </Link>
+                            
+
+                            {this.state.categories.map((category,mKey) => (
+                                <li key={mKey} className="nav-item dropdown dropdown-menu-lg-end">
+                                    <Link
+                                        className="nav-link dropdown-toggle"
+                                        id="navbarDarkDropdownMenuLink"
+                                        role="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                        to={`/category/${category.id}`}
+                                    >
+                                        {category.name}
+                                    </Link>
+                                    <ul
+                                        className="dropdown-menu dropdown-menu-dark"
+                                        aria-labelledby="navbarDarkDropdownMenuLink"
+                                    >
+                                        <li>
+                                            {category.sub_categories.map(
+                                                (sub_category,key) => (
+                                                    <Link
+                                                        className="dropdown-item"
+                                                        to={`/category/${sub_category.id}`}
+                                                        key={key}
+                                                    >
+                                                        {sub_category.name}
+                                                    </Link>
+                                                )
+                                            )}
+                                        </li>
+                                    </ul>
+                                </li>
+                            ))}
+                            <li className="nav-item dropdown dropdown-menu-lg-end">
+                                <a
+                                    className="nav-link dropdown-toggle"
+                                    id="navbarDarkDropdownMenuLink"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    <i className="fa fa-cog  fa-lg"></i>
+                                </a>
+                                <ul
+                                    className="dropdown-menu dropdown-menu-dark"
+                                    aria-labelledby="navbarDarkDropdownMenuLink"
+                                    style={{ marginLeft: "-85px" }}
+                                >
+                                    <li>
+                                        <Link
+                                            className="dropdown-item"
+                                            to="/dashboard"
+                                        >
+                                            Dashboard
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <a
+                                            className="dropdown-item"
+                                            onClick={this.logout}
+                                        >
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li className="nav-item">
                                 <Link style={styles.relative} to="/cart">
@@ -77,7 +158,7 @@ export default Navbar;
 
 const styles = {
     navbar: {
-        fontSize: "23px",
+        fontSize: "32px",
     },
     relative: {
         position: "relative",

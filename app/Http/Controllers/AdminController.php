@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\SubCategoryRequest;
-
+use Auth;
 // import requests validation
 use App\Models\Category;
 use App\Models\Product;
@@ -142,4 +142,10 @@ class AdminController extends Controller
             return response()->json($request->all());
         }
 
+        // logout
+        public function logout()
+        {
+            Auth::logout();
+            return redirect()->route('login');
+        }
 }

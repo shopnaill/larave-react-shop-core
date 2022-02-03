@@ -2,7 +2,7 @@
 <style>
     .swiper-coverflow 
     {
-        height: 565px!important;
+        height:fit-content;
     }
 </style>
 @section('content')

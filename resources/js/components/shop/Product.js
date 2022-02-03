@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import { Link } from "react-router-dom";
-import Pace from 'react-pace-progress'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 class Product extends React.Component {
     constructor(props) {
@@ -10,31 +10,20 @@ class Product extends React.Component {
         };
     }
 
-    load = ()=>{
-        this.setState({isLoading: true});
-        fetch().then(()=>{
-          // deal with data fetched
-          this.setState({isLoading: false})
-        })
-      };
+
 
     render() {
         return (
             <div className="col-lg-3">
-                        {this.state.isLoading ? <Pace color="#27ae60"/> : null}
 
                 <div className="card">
                     <Link to={`/product/${this.state.product.id}`}>
-                        <img
+                        <LazyLoadImage
                             src={this.state.product.cover}
                             className="card-img-top"
-                            alt="..."
+                            alt=".yy."
                         />
-                        <div className="">
-                            <div className="position-absolute top-0 end-0 m-3 product-discount">
-                                <span className="">-10%</span>
-                            </div>
-                        </div>
+                 
                         <div className="card-body">
                             <h6 className="card-title cursor-pointer">
                                 {this.state.product.name.slice(0, 25)}...

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class RelatedProducts extends React.Component
 {
@@ -41,23 +42,24 @@ class RelatedProducts extends React.Component
                 <div className="row">
                     <div className="col-12">
                         <h2 className="title">Related Products</h2>
+                         <hr />
                     </div>
                 </div>
                 <div className="row">
                     {this.state.products.map((product) => (
                         <div className="col-lg-3 col-md-4 col-sm-6" key={product.id}>
+                            <Link  to={`/product/${product.id}`} >
                             <div className="product-item">
                                 <div className="pi-pic">
-                                    <img src={product.image} alt="" />
-                                    <div className="pi-links">
-                                        <a href="#" className="add-card" data-id={product.id}><i className="flaticon-bag" />ADD TO CART</a>
-                                    </div>
+                                    <img className="img-fluid" src={product.cover} alt="" />
+                                     
                                 </div>
                                 <div className="pi-text">
                                     <h6>{product.name}</h6>
-                                    <p>{product.price}</p>
+                                    <p>{product.price} EGP</p>
                                 </div>
                             </div>
+                            </Link>
                         </div>
                     ))}
                 </div>
